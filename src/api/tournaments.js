@@ -1,6 +1,6 @@
 import moment from 'moment'
 
-const createTournament = ({ name, totalTeams, description, raffleDate, raffleTime }) => {
+const createTournament = ({ name, totalTeams, description, raffleTimestamp }) => {
   return {
     data: {
       tournament_id: 1,
