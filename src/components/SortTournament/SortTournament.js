@@ -27,6 +27,12 @@ const useStyles = makeStyles(() => ({
   lineBreak: {
     width: '100%',
   },
+  submitContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 15,
+  },
 }))
 
 const SortTournament = (props) => {
@@ -39,30 +45,48 @@ const SortTournament = (props) => {
   } = props
   const classes = useStyles()
   const [ tournament, setTournament ] = useState(null)
+  const [ raffle, setRaffle ] = useState(null)
   useEffect(() => {
     tournamentsApi.getTournament({ tournamentId })
       .then(response => {
         setTournament(response.data)
       })
-  })
+  }, [])
 
   const onSort = async () => {
-
+    const response = await tournamentsApi.sortTournament({ tournamentId })
+    setRaffle(response.data)
   }
 
   return (
     <div className={classes.container}>
-      <Typography>
+      <Typography align='center' variant='h6'>
         {tournament === null
           ? 'Cargando...'
           : (
-            tournament.name
+            tournament.nombre
           )
         }
       </Typography>
-      <Button variant='contained'>
-        Sortear equipos
-      </Button>
+      {raffle === null
+        ? (
+          <div className={classes.submitContainer}>
+            <Button onClick={onSort} variant='contained'>
+              Sortear equipos
+            </Button>
+          </div>
+        )
+        : (
+          <div>
+            <Typography>
+              Resultados de la súper aleatoriedad verificable
+            </Typography>
+            <Typography>
+              {JSON.stringify(raffle, null, 2)}
+            </Typography>
+          </div>
+        )
+      }
     </div>
   )
 }

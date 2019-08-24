@@ -6,7 +6,7 @@ const createTournament = ({ name, totalTeams, description, raffleTimestamp }) =>
     nombre: name,
     nEquipos: totalTeams,
     descripcion: description,
-    fechaSorteo: 430,
+    fechaSorteo: raffleTimestamp,
   };
 
   return axios.post(`http://localhost:8000/generar`, payload)
@@ -26,7 +26,7 @@ const enrollTeam = ({ idtorneo, nombre_equipo }) => {
 }
 
 const getResults = ({ tournamentId }) => {
-  return axios.get(`http://localhost:8000/resultados?id=${tournamentId}`)
+  return axios.get(`http://localhost:8000/grupos?id=${tournamentId}`)
 }
 
 const verifyTournament = ({}) => {
@@ -50,4 +50,5 @@ export default {
   enrollTeam,
   getResults,
   verifyTournament,
+  sortTournament,
 }

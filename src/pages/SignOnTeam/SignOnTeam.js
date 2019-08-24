@@ -34,14 +34,21 @@ const SignOnTeam = (props) => {
   const classes = useStyles()
 
   const [ status, setStatus ] = useState('waiting')
-  const onSubmit = async (values, actions) => {
-        setStatus('ready')
+  const onSubmit = async (values) => {
+    await tournamentsApi.enrollTeam({
+      idtorneo: props.match.params.idtorneo,
+      nombre_equipo: values.name,
+    })
+    setStatus('ready')
   }
   const [ tournament, setTournament ] = useState(null)
-  useEffect(async () => {
-    const response = await tournamentsApi.getTournament({ tournamentId: props.match.params.idtorneo })
-    setTournament(response.data)
+  useEffect(() => {
+    tournamentsApi.getTournament({ tournamentId: props.match.params.idtorneo })
+      .then(response => {
+        setTournament(response.data)
+      })
   }, [])
+
   return (
     <div className={classes.container}>
       {status === 'waiting' && (
