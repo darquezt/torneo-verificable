@@ -4,12 +4,12 @@ import moment from 'moment'
 const createTournament = ({ name, totalTeams, description, raffleTimestamp }) => {
   const payload = {
       nombre: name,
-      max_equipos: totalTeams,
+      nEquipos: totalTeams,
       descripcion: description,
-      timestamp: raffleTimestamp,
+      fechaSorteo: 420,
     };
 
-  return axios.post(`http://localhost:8000/generar`, {payload})
+  return axios.post(`http://localhost:8000/generar`, payload)
 }
 
 const getTournament = ({ tournamentId }) => {
@@ -18,7 +18,7 @@ const getTournament = ({ tournamentId }) => {
       nombre: 'Best torneo',
       n_equipos: 16,
       descripcion: 'This is the best tournament ever!',
-      fecha_sorrteo: moment(),
+      fecha_sorteo: moment(),
     },
   }
 }

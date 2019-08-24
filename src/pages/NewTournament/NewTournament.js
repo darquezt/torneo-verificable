@@ -41,7 +41,7 @@ const NewTournament = () => {
           raffleTime: moment(),
         }}
         onSubmit={async (values, actions) => {
-          alert( await tournamentsApi.createTournament(values));
+          alert(JSON.stringify( await tournamentsApi.createTournament(values)));
       }}
       >
         {(formikProps) => (
@@ -99,6 +99,7 @@ const NewTournament = () => {
             />
           )}
           />
+          <div className={classes.lineBreak} />
           <Button variant="contained" className={classes.button} type="submit">
             Crear
           </Button>
