@@ -5,6 +5,7 @@ import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   container: {
+    position: 'relative',
     display: 'flex',
     alignItems: 'flex-end',
     padding: '40px 0',
@@ -19,6 +20,11 @@ const useStyles = makeStyles(() => ({
   subtitle: {
     color: 'white',
   },
+  github: {
+    position: 'absolute',
+    right: 5,
+    bottom: 5,
+  }
 }))
 
 const Header = () => {
@@ -32,6 +38,9 @@ const Header = () => {
       <Typography variant='h6' className={classes.subtitle}>
         Randomize &amp; Verify
       </Typography>
+      <a className={classes.github} href="https://github.com/mbergert/HackatonRandomUchile2019/blob/master/TorneoVerificable/randomTorneo/views.py">
+        Github | Script de verificacion
+      </a>
     </div>
   )
 }
