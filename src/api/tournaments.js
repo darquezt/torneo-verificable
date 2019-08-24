@@ -3,11 +3,11 @@ import moment from 'moment'
 
 const createTournament = ({ name, totalTeams, description, raffleTimestamp }) => {
   const payload = {
-      nombre: name,
-      nEquipos: totalTeams,
-      descripcion: description,
-      fechaSorteo: 420,
-    };
+    nombre: name,
+    nEquipos: totalTeams,
+    descripcion: description,
+    fechaSorteo: 430,
+  };
 
   return axios.post(`http://localhost:8000/generar`, payload)
 }
