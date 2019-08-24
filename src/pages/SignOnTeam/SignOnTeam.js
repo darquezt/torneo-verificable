@@ -108,9 +108,7 @@ const SignOnTeam = (props) => {
           : (
             <>
             {inscritos.map(team => (
-              <ListItem button key={team}>
-                <ListItemText primary={`${team}`} />
-              </ListItem>
+              `${team},\t`              
             ))}
             </>
           )
