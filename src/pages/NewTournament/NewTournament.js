@@ -72,6 +72,7 @@ const NewTournament = () => {
       setStatus('ready')
       setTournamentId(response.data)
     } catch (errors) {
+      console.log(errors)
       setStatus('waiting')
     }
   }
@@ -126,7 +127,7 @@ const NewTournament = () => {
                   label='Fecha del sorteo'
                   format="dd/MM/yyyy"
                   {...field}
-                  onChange={(date) => form.setFieldValue(field.name, date)}
+                  onChange={(date) => form.setFieldValue(field.name, moment(date))}
                   KeyboardButtonProps={{
                     'aria-label': 'change date',
                   }}
@@ -142,7 +143,7 @@ const NewTournament = () => {
                 id="time-picker"
                 label="Hora del sorteo"
                 {...field}
-                onChange={(date) => form.setFieldValue(field.name, date)}
+                onChange={(date) => form.setFieldValue(field.name, moment(date))}
                 KeyboardButtonProps={{
                   'aria-label': 'change time',
                 }}
