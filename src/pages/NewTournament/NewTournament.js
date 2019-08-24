@@ -1,8 +1,11 @@
 import React from 'react'
 
-import { Formik, Field } from 'formik'
+import { Formik, Field, Form } from 'formik'
+
+import tournamentsApi from '../../api/tournaments'
 
 import { makeStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button';
 import { TextField as FormikTextField } from 'formik-material-ui'
 
 const useStyles = makeStyles(() => ({
@@ -18,13 +21,16 @@ const NewTournament = (props) => {
       <Formik
         initialValues={{
           name: '',
-          totalTeams: 0,
+          totalTeams: 4,
           description: '',
           raffleTimestamp: 0,
         }}
+        onSubmit={async (values, actions) => {
+          alert( await tournamentsApi.createTournament(values));
+      }}
       >
         {(formikProps) => (
-          <>
+          <Form>
           <Field
             name='name'
             label='Nombre del torneo'
@@ -45,7 +51,11 @@ const NewTournament = (props) => {
             component={FormikTextField}
             className={classes.field}
           />
-          </>
+          <div className={classes.lineBreak} />
+          <Button variant="contained" className={classes.button} type="submit">
+            Crear
+          </Button>
+          </Form>
         )}
       </Formik>
     </div>

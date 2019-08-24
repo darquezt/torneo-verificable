@@ -2,6 +2,8 @@ import React from 'react'
 
 import { Formik, Field } from 'formik'
 
+import tournamentsApi from '../../api/tournaments'
+
 import { makeStyles } from '@material-ui/core/styles'
 import { TextField as FormikTextField } from 'formik-material-ui'
 
@@ -17,9 +19,7 @@ const SignOnTeam = (props) => {
     <div className={classes.container}>
       <Formik
         initialValues={{
-          initial_state: 'Aqui deberia hacer un get',
-          id_pulso: 0,
-          counter: 1
+          nombre_equipo: tournamentsApi.enrollTeam('asd'),
         }}
       >
         {(formikProps) => (
