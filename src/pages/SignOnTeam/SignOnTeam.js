@@ -32,6 +32,11 @@ const useStyles = makeStyles(() => ({
 
 const SignOnTeam = (props) => {
   const classes = useStyles()
+
+  const [ status, setStatus ] = useState('waiting')
+  const onSubmit = async (values, actions) => {
+        setStatus('ready')
+  }
   const [ tournament, setTournament ] = useState(null)
   useEffect(async () => {
     const response = await tournamentsApi.getTournament({ tournamentId: props.match.params.idtorneo })
@@ -39,6 +44,8 @@ const SignOnTeam = (props) => {
   }, [])
   return (
     <div className={classes.container}>
+      {status === 'waiting' && (
+        <>
       <Typography align='center' variant='h3' className={classes.title}>
         {tournament === null
         ? <div>...</div> : tournament.nombre}
@@ -50,6 +57,7 @@ const SignOnTeam = (props) => {
         initialValues={{
           name: '',
         }}
+        onSubmit={onSubmit}
       >
         {(formikProps) => (
           <Form className={classes.form}>
@@ -66,6 +74,13 @@ const SignOnTeam = (props) => {
           </Form>
         )}
       </Formik>
+      </>
+    )}
+    {status === 'ready' && (
+      <div>
+      Felicitaciones! Tu equipo fue inscrito exitosamente.
+      </div>
+    )}
     </div>
   )
 }

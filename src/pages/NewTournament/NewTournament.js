@@ -170,9 +170,9 @@ const NewTournament = () => {
           Los equipos pueden inscribirse en el siguiente enlace:
         </Typography>
         <Link
-          to={`/inscribir/${tournamentId}`}
+          to={`/inscripcion/${tournamentId}`}
         >
-          http://localhost:3000/inscribir/{tournamentId}
+          http://localhost:3000/inscripcion/{tournamentId}
         </Link>
         </>
       )}
