@@ -41,7 +41,7 @@ const NewTournament = () => {
           raffleTime: moment(),
         }}
         onSubmit={async (values, actions) => {
-          alert( await tournamentsApi.createTournament(values));
+          alert(JSON.stringify( await tournamentsApi.createTournament(values)));
       }}
       >
         {(formikProps) => (
