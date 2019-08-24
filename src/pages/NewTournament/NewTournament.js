@@ -1,16 +1,30 @@
 import React from 'react'
-
+import moment from 'moment'
+import * as Yup from 'yup'
 import { Formik, Field } from 'formik'
 
 import { makeStyles } from '@material-ui/core/styles'
 import { TextField as FormikTextField } from 'formik-material-ui'
+import {
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers'
+
+const tournamentSchema = Yup.object().shape({
+  name: Yup.string()
+    .required(),
+  totalTeams: Yup.number()
+    .required(),
+  description: Yup.string(),
+  raffleDate: Yup.date(),
+})
 
 const useStyles = makeStyles(() => ({
   container: {
   },
 }))
 
-const NewTournament = (props) => {
+const NewTournament = () => {
   const classes = useStyles()
 
   return (
@@ -20,10 +34,12 @@ const NewTournament = (props) => {
           name: '',
           totalTeams: 0,
           description: '',
-          raffleTimestamp: 0,
+          raffleDate: moment(),
+          raffleTime: moment(),
         }}
+        validationSchema={tournamentSchema}
       >
-        {(formikProps) => (
+        {() => (
           <>
           <Field
             name='name'
@@ -44,6 +60,39 @@ const NewTournament = (props) => {
             label='Descripción'
             component={FormikTextField}
             className={classes.field}
+          />
+          <div className={classes.lineBreak} />
+          <Field
+            name='raffleDate'
+            render={({ field, form }) => (
+              <KeyboardDatePicker
+                margin="normal"
+                id="date-picker-dialog"
+                label='Fecha del sorteo'
+                format="dd/MM/yyyy"
+                {...field}
+                onChange={(date) => form.setFieldValue(field.name, date)}
+                KeyboardButtonProps={{
+                  'aria-label': 'change date',
+                }}
+              />
+            )}
+          />
+          <div className={classes.lineBreak} />
+          <Field
+          name='raffleTime'
+          render={({ field, form }) => (
+            <KeyboardTimePicker
+              margin="normal"
+              id="time-picker"
+              label="Hora del sorteo"
+              {...field}
+              onChange={(date) => form.setFieldValue(field.name, date)}
+              KeyboardButtonProps={{
+                'aria-label': 'change time',
+              }}
+            />
+          )}
           />
           </>
         )}
