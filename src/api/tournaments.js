@@ -29,10 +29,8 @@ const getResults = ({ tournamentId }) => {
   return axios.get(`http://localhost:8000/grupos?id=${tournamentId}`)
 }
 
-const verifyTournament = ({}) => {
-  return {
-    data: {},
-  }
+const verifyTournament = ({idPulso, datosIni}) => {
+  return axios.get(`http://127.0.0.1:8000/verificar?id_pulso=${idPulso}&datos_iniciales=${datosIni}`)
 }
 
 const sortTournament = ({ tournamentId }) => {
