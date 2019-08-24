@@ -33,6 +33,10 @@ const verifyTournament = ({idPulso, datosIni}) => {
   return axios.get(`http://127.0.0.1:8000/verificar?id_pulso=${idPulso}&datos_iniciales=${datosIni}`)
 }
 
+const listTeams = ({teamId}) => {
+  return axios.get(`http://127.0.0.1:8000/verequipos?id=${teamId}`)
+}
+
 const sortTournament = ({ tournamentId }) => {
   return axios.post(
     'http://localhost:8000/sortear',
@@ -49,4 +53,5 @@ export default {
   getResults,
   verifyTournament,
   sortTournament,
+  listTeams,
 }
