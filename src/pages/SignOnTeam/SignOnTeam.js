@@ -45,6 +45,7 @@ const SignOnTeam = (props) => {
       idtorneo: props.match.params.idtorneo,
       nombre_equipo: values.name,
     })
+    console.log('ready')
     setStatus('ready')
   }
   const [ tournament, setTournament ] = useState(null)
