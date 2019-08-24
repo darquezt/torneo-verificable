@@ -99,6 +99,7 @@ const NewTournament = () => {
             />
           )}
           />
+          <div className={classes.lineBreak} />
           <Button variant="contained" className={classes.button} type="submit">
             Crear
           </Button>
