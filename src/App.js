@@ -7,6 +7,8 @@ import VerifyRandomness from './pages/VerifyRandomness';
 import SignOnTeam from './pages/SignOnTeam';
 import Header from './components/Header'
 import Background from './assets/img/parallax.jpeg'
+import Results from './pages/Results/Results';
+import SortTournament from './components/SortTournament';
 
 const useStyles = makeStyles(() => ({
   content: {
@@ -29,6 +31,8 @@ const App = () => {
           <Route path='/' exact component={NewTournament} />
           <Route path='/verificar' exact component={VerifyRandomness} />
           <Route path='/inscripcion/:idtorneo' exact component={SignOnTeam} />
+          <Route path='/resultados/:tournamentId' exact component={Results} />
+          <Route path='/sortear/:tournamentId' exact component={SortTournament} />
         </Switch>
       </div>
     </>

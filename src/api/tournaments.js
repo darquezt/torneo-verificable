@@ -26,17 +26,22 @@ const enrollTeam = ({ idtorneo, nombre_equipo }) => {
 }
 
 const getResults = ({ tournamentId }) => {
-  return {
-    data: {
-
-    },
-  }
+  return axios.get(`http://localhost:8000/resultados?id=${tournamentId}`)
 }
 
 const verifyTournament = ({}) => {
   return {
     data: {},
   }
+}
+
+const sortTournament = ({ tournamentId }) => {
+  return axios.post(
+    'http://localhost:8000/sortear',
+    {
+      id: tournamentId,
+    },
+  )
 }
 
 export default {
