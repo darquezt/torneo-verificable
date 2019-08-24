@@ -13,22 +13,16 @@ const createTournament = ({ name, totalTeams, description, raffleTimestamp }) =>
 }
 
 const getTournament = ({ tournamentId }) => {
-  return {
-    data: {
-      nombre: 'Best torneo',
-      n_equipos: 16,
-      descripcion: 'This is the best tournament ever!',
-      fecha_sorteo: moment(),
-    },
-  }
+  return axios.get(`http://localhost:8000/torneo?id=${tournamentId}`)
 }
 
-const enrollTeam = ({ name }) => {
-  return {
-    data: {
-      team_id: 2,
-    },
-  }
+const enrollTeam = ({ idtorneo, nombre_equipo }) => {
+  const payload = {
+      id_torneo: idtorneo,
+      nombre_equipo: nombre_equipo,
+    };
+
+  return axios.post(`http://localhost:8000/inscribir`, payload)
 }
 
 const getResults = ({ tournamentId }) => {

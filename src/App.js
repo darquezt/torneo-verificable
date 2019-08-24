@@ -28,7 +28,7 @@ const App = () => {
         <Switch>
           <Route path='/' exact component={NewTournament} />
           <Route path='/verificar' exact component={VerifyRandomness} />
-          <Route path='/inscripcion' exact component={SignOnTeam} />
+          <Route path='/inscripcion/:idtorneo' exact component={SignOnTeam} />
         </Switch>
       </div>
     </>
