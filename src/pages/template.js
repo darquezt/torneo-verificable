@@ -7,14 +7,13 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-const NewTournament = (props) => {
+const SomeComponent = (props) => {
   const classes = useStyles()
 
   return (
     <div className={classes.container}>
-      <p>New NewTournament</p>
     </div>
   )
 }
 
-export default NewTournament
+export default SomeComponent
