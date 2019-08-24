@@ -4,7 +4,7 @@ import { Formik, Field, Form } from 'formik'
 import tournamentsApi from '../../api/tournaments'
 import { makeStyles } from '@material-ui/core/styles'
 import { TextField as FormikTextField } from 'formik-material-ui'
-import { Typography, Button } from '@material-ui/core';
+import { Typography, Button, List, ListItem, ListItemText, Divider } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -88,7 +88,18 @@ const VerifyRandomness = (props) => {
     )}
     {responseData != null && (
       <div>
-        {JSON.stringify(responseData.data, null, " ")}
+        {responseData.data.map(group => (
+            <>
+            <List dense>
+              {group.map(team => (
+                <ListItem button key={team[0]}>
+                  <ListItemText primary={`${team[0]} ${team[1]}`} />
+                </ListItem>
+              ))}
+            </List>
+            <Divider fullWidth />
+            </>
+          ))}
       </div>
     )}
     </div>
