@@ -5,6 +5,12 @@ import tournamentsApi from '../../api/tournaments'
 import { makeStyles } from '@material-ui/core/styles'
 import { TextField as FormikTextField } from 'formik-material-ui'
 import { Typography, Button } from '@material-ui/core';
+import {
+  List,
+  ListItem,
+  ListItemText,
+  Divider,
+} from '@material-ui/core'
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -43,10 +49,17 @@ const SignOnTeam = (props) => {
     setStatus('ready')
   }
   const [ tournament, setTournament ] = useState(null)
+  const [ inscritos, setInscritos ] = useState(null)
   useEffect(() => {
     tournamentsApi.getTournament({ tournamentId: props.match.params.idtorneo })
       .then(response => {
         setTournament(response.data)
+      })
+  }, [])
+  useEffect(() => {
+    tournamentsApi.listTeams({ teamId: props.match.params.idtorneo })
+      .then(response => {
+        setInscritos(response.data)
       })
   }, [])
 
@@ -82,7 +95,28 @@ const SignOnTeam = (props) => {
           </Form>
         )}
       </Formik>
+      <br/>
+      <Divider fullWidth />
+      <br/>
+      <div>
+      Equipos inscritos actualmente:
+      </div>
+      <List dense>
+        {inscritos === null
+          ? (
+            <div>Cargando...</div>
+          )
+          : (
+            <>
+            {inscritos.map(team => (
+              `${team},\t`              
+            ))}
+            </>
+          )
+        }
+      </List>
       </>
+
     )}
     {status === 'ready' && (
       <div>
