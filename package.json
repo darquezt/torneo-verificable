@@ -11,7 +11,7 @@
     "date-fns": "^2.0.0-beta.5",
     "formik": "^1.5.8",
     "formik-material-ui": "^0.0.22",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-parallax": "^2.2.0",
